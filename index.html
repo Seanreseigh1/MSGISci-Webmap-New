@@ -8,6 +8,7 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
 
+
 <style>
 	#map {
 	position: absolute;
@@ -20,7 +21,7 @@
 
     
 .info {
-	padding: 6px 8px;
+		padding: 6px 8px;
         font: 14px/16px Arial, Helvetica, sans-serif;
         background: white;
         background: rgba(255,255,255,0.8);
@@ -41,7 +42,7 @@
            opacity: 0;
           }
 
-</style>
+		  </style>
 
 </head>
 
@@ -50,7 +51,7 @@
 
 <div id="map"></div> 
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-<script src="Web_map/data/GeoJson/Tulare_allwater.js"></script>
+<script src="/js/leaflet-0.7.2/leaflet.ajax.min.js"></script>
 <script>
 
 	
@@ -88,7 +89,9 @@
             "fillOpacity": 0.40
         }
     };
-    
+	
+	
+
     
     
 	//ADD GEOJSON
@@ -126,9 +129,34 @@
 	]
 	};
 	
+	
+	function highlightFeature1(e) {
+		var layer = e.target;
+		
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+	}
+	
+	function resetHighlight1(e) {
+		river1.resetStyle(e.target);
+	}
+    
+	function highlight1(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature1,
+			mouseout: resetHighlight1
+		});
+	}
     
 	
-    var river1 = L.geoJson(Tule_river, {style: riverStyle}).addTo(map).bindPopup('This is the Tule River');
+    var river1 = L.geoJson(Tule_river, {style: riverStyle, onEachFeature: highlight1}).addTo(map).bindPopup('This is the Tule River');
+	
+	
+	
 	
 	
 	RR_boundary = {
@@ -140,18 +168,39 @@
 	]
 	};
 	
-
+	function highlightFeature2(e) {
+		var layer = e.target;
+		
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+	}
+	
+	function resetHighlight2(e) {
+		propboundary.resetStyle(e.target);
+	}
+    
+	function highlight2(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature2,
+			mouseout: resetHighlight2
+		});
+	}
     
     
-    var propboundary = L.geoJson(RR_boundary, {style: boundaryStyle}).addTo(map).bindPopup('River Ridge Ranch Boundary');
+    var propboundary = L.geoJson(RR_boundary, {style: boundaryStyle, onEachFeature: highlight2}).addTo(map).bindPopup('River Ridge Ranch Boundary');
 
 	
-	//L.geoJson(Tulare_allwater.js, {"color": "#42f445", "weight": 4, "opacity": 1}).addTo(map);
+	//var All_water = new L.GeoJSON.AJAX("All_Water",{style:riverStyle}).addTo(map);
 	
 	
 	
 	
-	//ADD MARKERS AND LAYER CONTROLS
+	
+//ADD MARKERS AND LAYER CONTROLS
 	
 	var site = L.marker([36.162660, -118.799860]).addTo(map).bindPopup('<a href="http://www.river-ridge.net/">Visit the River Ridge Ranch Site</a>'),
 		cow = L.marker([36.160757, -118.797696]).addTo(map).bindPopup('<b>Tree</b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/>');
