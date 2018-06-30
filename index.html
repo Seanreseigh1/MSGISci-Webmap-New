@@ -98,7 +98,7 @@
 	var pastures;
 	
 	
-	function highlightFeature2(e) {
+	function highlightFeature1(e) {
 		var layer = e.target;
 		
 		layer.setStyle({
@@ -109,7 +109,7 @@
 		});
 	}
 	
-	function resetHighlight2(e) {
+	function resetHighlight1(e) {
 		pastures.resetStyle(e.target);
 	}
     
@@ -172,7 +172,7 @@
 	
 	var Tule_river;
 	
-	function highlightFeature1(e) {
+	function highlightFeature3(e) {
 		var layer = e.target;
 		
 		layer.setStyle({
@@ -183,11 +183,11 @@
 		});
 	}
 	
-	function resetHighlight1(e) {
+	function resetHighlight3(e) {
 		Tule_river.resetStyle(e.target);
 	}
     
-	function highlight1(feature, layer) {
+	function highlight3(feature, layer) {
 		layer.on({
 			mouseover: highlightFeature1,
 			mouseout: resetHighlight1
@@ -198,7 +198,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tule_river.geojson",
 		dataType: 'json',
 		success: function (response) {
-			Tule_river = L.geoJson(response, {style: riverStyle, onEachFeature: highlight1}).bindPopup("This is the Tule River");
+			Tule_river = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is the Tule River");
 			//Tule_river.addTo(map);
 			layercontrol.addOverlay(Tule_river, "Tule River")
 		}
