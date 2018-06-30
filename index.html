@@ -98,14 +98,36 @@
 	var pastures;
 	
 	
+	function highlightFeature2(e) {
+		var layer = e.target;
+		
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+	}
+	
+	function resetHighlight2(e) {
+		pastures.resetStyle(e.target);
+	}
+    
+	function highlight1(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature2,
+			mouseout: resetHighlight2
+		});
+	}
+	
 	
 	$.ajax({
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Pastures.geojson",
 		dataType: 'json',
 		success: function (response) {
-			pastures = L.geoJson(response, {style: pastureStyle});
+			pastures = L.geoJson(response, {style: pastureStyle, onEachFeature: highlight1}).bindPopup("This Polygon includes the extent of all the patures");
 			//pastures.addTo(map);
-			layercontrol.addOverlay(pastures, 'Pasture 1')
+			layercontrol.addOverlay(pastures, 'All Pastures')
 		}
 	});
 	
