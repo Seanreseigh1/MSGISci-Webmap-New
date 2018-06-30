@@ -86,6 +86,12 @@
 		}
 	};
 	
+	function treeStyle(features){
+		return{
+		"color": "#d3101a"
+		}
+	};
+	
 	
 
     
@@ -201,6 +207,20 @@
 			Tule_river = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is the Tule River");
 			//Tule_river.addTo(map);
 			layercontrol.addOverlay(Tule_river, "Tule River")
+		}
+	});
+	
+	
+	var trees ;
+	
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_points.geojson",
+		dataType: 'json',
+		success: function(response) {
+			trees = L.geoJson(response, {style: treeStyle}).bindPopup("This is a Tree!");
+			//Tule_river.addTo(map);
+			layercontrol.addOverlay(trees, "Study Trees")
 		}
 	});
 	
