@@ -278,7 +278,7 @@
         var iframe = document.getElementById( 'api-frame' );
         var version = '1.0.0';
         var urlid = '1e84bfc2489b433d951478f79fc7952f';
-        var client = new Sketchfab( version, iframe );
+        var client = new Sketchfab( version, iframe ).addTo(map);
 
         client.init( urlid, {
             success: function onSuccess( api ){
