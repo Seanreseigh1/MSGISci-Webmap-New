@@ -218,11 +218,7 @@
 	$.ajax({
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_points.geojson",
 		dataType: 'json',
-		success: function(response) {
-			trees = L.geoJson(response, {
-					onEachFeature:
-						function(feature,layer) {
-							layer.bindPopup(feature.properties.Comment);
+		success: function(response, {style: treeStyle}).bindPopup(feature.properties.Comment);
 			//Tule_river.addTo(map);
 			layercontrol.addOverlay(trees, "Study Trees")
 		}
@@ -342,7 +338,7 @@
 	
 	//SCALE BAR AND NORTH ARROW
     
-    //L.control.scale(position= 'bottomleft', maxWidth= 100, imperial= true).addTo(map);
+    L.control.scale(position= 'bottomleft', maxWidth= 100, imperial= true).addTo(map);
 	
 
 
