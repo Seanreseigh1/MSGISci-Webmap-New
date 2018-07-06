@@ -339,22 +339,10 @@
 	
 	//EXTRA CONTROLS
     
-   	//L.control.scale(position= 'bottomleft', maxWidth= 100, imperial= true).addTo(map);
+   	L.control.scale(position= 'bottomleft', maxWidth= 100, imperial= true).addTo(map);
 	
-	var mousePosition = L.control.mousePosition({
-  		emptyString: '0º N<br>0º E',
- 		separator: '<br>',
-  		lngFormatter: function(num) {
-    			var direction = (num < 0) ? 'W' : 'E';
-    			var formatted = Math.abs(L.Util.formatNum(num, 3)) + 'º ' + direction;
-    			return formatted; 
-  		},
-  		latFormatter: function(num) {
-    			var direction = (num < 0) ? 'S' : 'N';
-    			var formatted = Math.abs(L.Util.formatNum(num, 3)) + 'º ' + direction;
-    			return formatted;
-  		}
-	}).addTo(map);
+	L.control.mousePosition(position= 'bottom').addTo(map);
+
 
 
 	
