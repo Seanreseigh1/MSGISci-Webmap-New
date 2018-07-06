@@ -247,7 +247,8 @@
     		if (map.getZoom() > 15 && map.hasLayer(propboundary)) {
         	map.removeLayer(propboundary);
     		}
-    		if (map.getZoom() < 15 map.addLayer(propboundary);  
+    		if (map.getZoom() < 15 && map.haslayer(propboundary)) { 
+		map.addLayer(propboundary);  
 	});
 	
 	
