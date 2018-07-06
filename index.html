@@ -337,9 +337,12 @@
     
 	
 	
-	//SCALE BAR AND NORTH ARROW
+	//EXTRA CONTROLS
     
-    L.control.scale(position= 'bottomleft', maxWidth= 100, imperial= true).addTo(map);
+   	L.control.scale(position= 'bottomleft', maxWidth= 100, imperial= true).addTo(map);
+	L.control.mousePosition(position= 'bottomleft').addTo(map);
+
+
 	
 
 
