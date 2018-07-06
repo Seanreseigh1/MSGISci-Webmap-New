@@ -219,7 +219,10 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_points.geojson",
 		dataType: 'json',
 		success: function(response) {
-			trees = L.geoJson(response, {style: treeStyle}); //.bindPopup("Tree: " + feature.properties.Comment + "<br>Image: " + feature.properties.Image);
+			trees = L.geoJson(response, {
+					onEachFeature:
+						function(feature,layer) {
+							layer.bindPopup(feature.properties.Comment);
 			//Tule_river.addTo(map);
 			layercontrol.addOverlay(trees, "Study Trees")
 		}
