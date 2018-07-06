@@ -243,15 +243,7 @@
 		zoom: 15,
 	});
 	
-	map.on('zoomend', function () {
-    		if (map.getZoom() > 15 && map.hasLayer(propboundary)) {
-        	map.removeLayer(propboundary);
-    		}
-    		if (map.getZoom() < 15 && map.haslayer(propboundary) == false)
-		{
-		map.addLayer(propboundary);  
-		)
-	});
+
 	
 	
 	
