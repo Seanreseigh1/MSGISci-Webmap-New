@@ -243,6 +243,13 @@
 		zoom: 15,
 	});
 	
+	if(map.getZoom()>15){
+ 		propboundary.eachLayer(function(layer) {
+       			layer.setStyle({fillOpacity:0});
+   			}
+		 });
+	}
+	
 
 	
 	
