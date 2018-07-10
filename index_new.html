@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title> River Ridge Ranch Site </title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+
+
+<style>
+	#map {
+	position: absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+}
+            
+    
+.info {
+		padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background: white;
+        background: rgba(255,255,255,0.8);
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        border-radius: 5px;
+      }
+.legend {
+         text-align: left;
+         line-height: 25px;
+         color: #555;
+        }
+
+.legend i {
+           width: 22px;
+           height: 22px;
+           float: left;
+	       margin-right: 8px;
+           opacity: 0;
+          }
+		  
+
+</style>
+
+</head>
+
+
+<body>
+<div id="map"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+<script src="sketchfab-viewer-1.0.0.js"></script>
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<script>
+
+	
+	
+	
+    //LAYER STYLES
+    
+    function riverStyle(feature){
+        return{
+            "color": "#00fdfd",
+            "weight": 4,
+            "opacity": 1
+        }
+    };
+    
+    function boundaryStyle(feature){
+        return{
+            "fillColor": "#edc050",
+            "color": "#42f445",
+            "weight": 6,
+            "opacity": 1,
+            "fillOpacity": 0.40
+        }
+    };
+	
+	function pastureStyle(feature){
+		return{
+            "fillColor": "#d64f22",
+            "color": "#ffffff",
+            "weight": 6,
+            "opacity": 1,
+            "fillOpacity": 0.40
+		}
+	};
+	
+	function treeStyle(features){
+		return{
+		"color": "#d3101a"
+		}
+	};
+	
+	
+
+    
+    
+	//ADD GEOJSONS
+	
+	
+	
+
+	var pastures;
+	
+	
+	function highlightFeature1(e) {
+		var layer = e.target;
+		
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+	}
+	
+	function resetHighlight1(e) {
+		pastures.resetStyle(e.target);
+	}
+    
+	function highlight1(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature1,
+			mouseout: resetHighlight1
+		});
+	}
+	
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Pastures.geojson",
+		dataType: 'json',
+		success: function (response) {
+			pastures = L.geoJson(response, {style: pastureStyle, onEachFeature: highlight1}).bindPopup("This Polygon includes the extent of all the patures");
+			//pastures.addTo(map);
+			layercontrol.addOverlay(pastures, 'All Pastures')
+		}
+	});
+	
+	
+	
+	var propboundary;
+	
+	function highlightFeature2(e) {
+		var layer = e.target;
+		
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+	}
+	
+	function resetHighlight2(e) {
+		propboundary.resetStyle(e.target);
+	}
+    
+	function highlight2(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature2,
+			mouseout: resetHighlight2
+		});
+	}
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/RR_boundary.geojson",
+		dataType: 'json',
+		success: function (response) {
+			propboundary = L.geoJson(response, {style: boundaryStyle, onEachFeature: highlight2}).bindPopup("Property Boundary");
+			propboundary.addTo(map);
+			layercontrol.addOverlay(propboundary, 'River Ridge Ranch Boundary')
+		}
+	});
+	
+	
+	
+	
+	var Tule_river;
+	
+	function highlightFeature3(e) {
+		var layer = e.target;
+		
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+	}
+	
+	function resetHighlight3(e) {
+		Tule_river.resetStyle(e.target);
+	}
+    
+	function highlight3(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature3,
+			mouseout: resetHighlight3
+		});
+	}
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tule_river.geojson",
+		dataType: 'json',
+		success: function (response) {
+			Tule_river = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is the Tule River");
+			//Tule_river.addTo(map);
+			layercontrol.addOverlay(Tule_river, "Tule River")
+		}
+	});
+	
+	
+	// var trees ;
+	
+	
+	// $.ajax({
+		// url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_points.geojson",
+		// dataType: 'json',
+		// success: function(response) {
+			// trees = L.geoJson(response, {style: treeStyle})
+			Tule_river.addTo(map);
+			// layercontrol.addOverlay(trees, "Study Trees")
+		// }
+	// });
+	
+	
+
+	
+	
+	
+	
+	//SET MAPVIEW
+
+	
+	
+	
+	
+	var map = L.map('map', {
+		center: [36.155983, -118.793571],
+		zoom: 15,
+	});
+	
+	map.on('zoomend', function () {
+		if (map.getZoom() > 15 && map.hasLayer(propboundary)) {
+			map.removeLayer(propboundary);
+		}
+		else {
+			map.addLayer(propboundary);
+		}
+	});
+	
+
+		
+	
+	
+	
+	
+	
+	
+	
+	//SET BASEMAPS
+	
+	var Mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/seanreseigh1/cjif8mg331hgj2srtdd4ekuir/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2VhbnJlc2VpZ2gxIiwiYSI6ImNqZ3p3anlvZTAxejYycW80cnhrYWRmZjkifQ.5ZvsDBz6Vw_plI3oo1aYDA', {maxZoom: 25, maxNativeZoom: 18}).addTo(map),
+		Black_and_white = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 20, maxNativeZoom: 18}).addTo(map),
+		Topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)', maxZoom: 20, maxNativeZoom: 18}).addTo(map),
+		Thunder = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}{r}.{ext}', {attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 20, maxNativeZoom: 18, subdomains: 'abcd',ext: 'png'}).addTo(map);
+	
+	
+
+	
+	
+	
+//ADD MARKERS AND LAYER CONTROLS
+	
+	
+	
+	var site = L.marker([36.162660, -118.799860]).addTo(map).bindPopup('<a href="http://www.river-ridge.net/">Visit the River Ridge Ranch Site</a>'),
+		tree23 = L.marker([36.160757, -118.797696]).addTo(map).bindPopup('<b>Tree</b>\n<iframe src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+		tree39 = L.marker([36.161532, -118.800391]).addTo(map).bindPopup('<b>Tree</b>\n<tree39_render src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></tree39_render><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+		tree24 = L.marker([36.161871, -118.797696]).addTo(map).bindPopup('<b>Tree</b>\n<tree24_render src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></tree24_render><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+		tree25 = L.marker([36.161713, -118.79999]).addTo(map).bindPopup('<b>Tree</b>\n<tree25_render src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></tree25_render><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+		tree27 = L.marker([36.161734, -118.800066]).addTo(map).bindPopup('<b>Tree</b>\n<tree27_render src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></tree27_render><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+		tree26 = L.marker([36.161738, -118.800096]).addTo(map).bindPopup('<b>Tree</b>\n<tree26_render src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></tree26_render><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+		tree28 = L.marker([36.161736, -118.800115]).addTo(map).bindPopup('<b>Tree</b>\n<tree28_render src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></tree28_render><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+		tree29 = L.marker([36.161736, -118.800143]).addTo(map).bindPopup('<b>Tree</b>\n<tree29_render src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></tree29_render><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+		treeunk = L.marker([36.161821, -118.800197]).addTo(map).bindPopup('<b>Tree</b>\n<treeunk_render src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></treeunk_render><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+		tree30 = L.marker([36.161673, -118.800104]).addTo(map).bindPopup('<b>Tree</b>\n<tree30_render src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></tree30_render><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+		tree22 = L.marker([36.160757, -118.797696]).addTo(map).bindPopup('<b>Tree</b>\n<tree22_render src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></tree22_render><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+		tree38 = L.marker([36.161622, -118.800307]).addTo(map).bindPopup('<b>Tree</b>\n<tree38_render src="https://sketchfab.com/models/1e84bfc2489b433d951478f79fc7952f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></tree38_render><b><div><img src="https://i.imgur.com/yuyzanK.jpg" height="150px" width="150px"/></b>',
+		{maxWidth : "auto"});
+	
+        var iframe = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var urlid = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, iframe ).addTo(map);
+
+        client.init( urlid, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+		
+		
+		var tree39_render = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var tree39_3d = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, tree39_render ).addTo(map);
+
+        client.init( tree39_3d, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+		
+		
+		var tree24_render = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var tree24_3d = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, tree24_render ).addTo(map);
+
+        client.init( tree24_3d, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+		
+		
+		var tree25_render = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var tree25_3d = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, tree25_render ).addTo(map);
+
+        client.init( tree25_3d, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+		
+		
+		var tree27_render = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var tree27_3d = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, tree27_render ).addTo(map);
+
+        client.init( tree27_3d, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+	
+	
+		var tree26_render = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var tree26_3d = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, tree26_render ).addTo(map);
+
+        client.init( tree26_3d, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+	
+	
+		var tree28_render = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var tree28_3d = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, tree28_render ).addTo(map);
+
+        client.init( tree28_3d, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+	
+	
+		var tree29_render = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var tree29_3d = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, tree29_render ).addTo(map);
+
+        client.init( tree29_3d, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+	
+	
+	
+		var treeunk_render = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var treeunk_3d = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, treeunk_render ).addTo(map);
+
+        client.init( treeunk_3d, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+		
+		
+		var tree30_render = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var tree30_3d = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, tree30_render ).addTo(map);
+
+        client.init( tree30_3d, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+		
+		
+		var tree22_render = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var tree22_3d = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, tree22_render ).addTo(map);
+
+        client.init( tree22_3d, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+	
+	
+	
+		var tree38_render = document.getElementById( 'api-frame' );
+        var version = '1.0.0';
+        var tree38_3d = '1e84bfc2489b433d951478f79fc7952f';
+        var client = new Sketchfab( version, tree38_render ).addTo(map);
+
+        client.init( tree38_3d, {
+           success: function onSuccess( api ){
+                // API is ready to use
+               api.start();
+            },
+            error: function onError() {
+               console.log( 'Viewer error' );
+            },
+            ui_infos: 0,
+            ui_controls: 0,
+            ui_stop: 0,
+        } );
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	var tree_popups = L.layerGroup([tree22, tree23, tree24, tree25, tree26, tree27. tree28, tree29, tree30, tree38, tree39, treeunk]);
+    layercontrol.addOverlay(tree_popups, 'Study Trees')
+   
+	
+	var basemaps = {
+		"Black and White" : Black_and_white,
+		"Topographic" : Topo,
+		"Watercolor" : Thunder,
+		"Mapbox": Mapbox,
+	};
+
+
+	var layercontrol = L.control.layers(basemaps)
+	layercontrol.addTo(map);
+	
+	
+	
+	
+	//LEGEND
+	
+	var legend = L.control({position: 'bottomright'});
+		legend.onAdd = function(map){
+		var div = L.DomUtil.create('div', 'info legend');
+		labels = [
+			"Tule River",
+			"River Ridge Ranch Boundary",
+		];
+        
+		div.innerHTML = labels.join('<br>');
+		return div;
+		};
+	legend.addTo(map);
+    
+    
+    
+	
+	
+	//SCALE BAR AND NORTH ARROW
+    
+    L.control.scale(position= 'bottomleft', maxWidth= 100, imperial= true).addTo(map);
+	
+
+
+</script>
+
+</body>
+</html>
