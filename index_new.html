@@ -227,7 +227,66 @@
 	// });
 	
 	
-
+	var tree_cluster1
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_clusters1.geojson",
+		dataType: 'json',
+		success: function (response) {
+			tree_cluster1 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
+			//tree_cluster1.addTo(map);
+			//layercontrol.addOverlay(Tree_cluster1, "Tree Cluster 1")
+		}
+	});
+	
+	var tree_cluster2
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_clusters2.geojson",
+		dataType: 'json',
+		success: function (response) {
+			tree_cluster2 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
+			//tree_cluster2.addTo(map);
+			//layercontrol.addOverlay(Tree_cluster1, "Tree Cluster 2")
+		}
+	});
+	
+	var tree_cluster3
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_clusters3.geojson",
+		dataType: 'json',
+		success: function (response) {
+			tree_cluster3 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
+			//tree_cluster3.addTo(map);
+			//layercontrol.addOverlay(Tree_cluster1, "Tree Cluster 3")
+		}
+	});
+	
+	var tree_cluster4
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_clusters4.geojson",
+		dataType: 'json',
+		success: function (response) {
+			tree_cluster4 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
+			//tree_cluster4.addTo(map);
+			//layercontrol.addOverlay(Tree_cluster1, "Tree Cluster 4")
+		}
+	});
+	
+	var tree_cluster5
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_clusters5.geojson",
+		dataType: 'json',
+		success: function (response) {
+			tree_cluster5 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
+			//tree_cluster5.addTo(map);
+			//layercontrol.addOverlay(Tree_cluster1, "Tree Cluster 5")
+		}
+	});
+	
 	
 	
 	
