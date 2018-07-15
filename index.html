@@ -266,7 +266,8 @@
        	 		if (map.hasLayer(propboundary)){
             			console.log("layer already added");
        			} else {
-            			map.addLayer(propboundary);
+            			map.addLayer(propboundary)
+				map.addLayer(pastures);
         		}
     		}
 		if (map.getZoom() >15){
