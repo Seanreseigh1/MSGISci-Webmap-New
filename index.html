@@ -269,6 +269,11 @@
             			map.addLayer(propboundary);
         		}
     		}
+		if (map.getZoom() >15){
+			if (map.haslayer(pastures)) {
+				map.addlayer(pastures);
+			}
+		}
 	});
 
 	
