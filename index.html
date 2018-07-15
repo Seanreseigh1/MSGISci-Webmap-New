@@ -141,7 +141,7 @@
 	
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Pastures.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Pastures.geojson",
 		dataType: 'json',
 		success: function (response) {
 			pastures = L.geoJson(response, {style: pastureStyle, onEachFeature: highlight1}).bindPopup("This Polygon includes the extent of all the patures");
@@ -177,7 +177,7 @@
 	}
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/RR_boundary.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/RR_boundary.geojson",
 		dataType: 'json',
 		success: function (response) {
 			propboundary = L.geoJson(response, {style: boundaryStyle, onEachFeature: highlight2}).bindPopup("Property Boundary");
@@ -214,7 +214,7 @@
 	}
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tule_river.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tule_river.geojson",
 		dataType: 'json',
 		success: function (response) {
 			Tule_river = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is the Tule River");
@@ -228,7 +228,7 @@
 	
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_points.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_points.geojson",
 		dataType: 'json',
 		success: function(response) {
 			trees = L.geoJson(response, {style: treeStyle})
