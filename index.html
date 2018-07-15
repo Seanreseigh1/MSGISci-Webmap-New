@@ -271,6 +271,8 @@
     		}
 		if (map.getZoom() >15){
 			if (map.hasLayer(pastures)) {
+				console.log("layer already added");
+			} else {
 				map.addLayer(pastures);
 			}
 		}
