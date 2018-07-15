@@ -130,7 +130,7 @@
 	
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Pastures.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Pastures.geojson",
 		dataType: 'json',
 		success: function (response) {
 			pastures = L.geoJson(response, {style: pastureStyle, onEachFeature: highlight1}).bindPopup("This Polygon includes the extent of all the patures");
@@ -166,7 +166,7 @@
 	}
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/RR_boundary.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/RR_boundary.geojson",
 		dataType: 'json',
 		success: function (response) {
 			propboundary = L.geoJson(response, {style: boundaryStyle, onEachFeature: highlight2}).bindPopup("Property Boundary");
@@ -203,7 +203,7 @@
 	}
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tule_river.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tule_river.geojson",
 		dataType: 'json',
 		success: function (response) {
 			Tule_river = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is the Tule River");
@@ -217,7 +217,7 @@
 	
 	
 	// $.ajax({
-		// url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_points.geojson",
+		// url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_points.geojson",
 		// dataType: 'json',
 		// success: function(response) {
 			// trees = L.geoJson(response, {style: treeStyle})
@@ -230,7 +230,7 @@
 	var tree_cluster1
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_clusters1.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters1.geojson",
 		dataType: 'json',
 		success: function (response) {
 			tree_cluster1 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
@@ -242,7 +242,7 @@
 	var tree_cluster2
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_clusters2.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters2.geojson",
 		dataType: 'json',
 		success: function (response) {
 			tree_cluster2 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
@@ -254,7 +254,7 @@
 	var tree_cluster3
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_clusters3.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters3.geojson",
 		dataType: 'json',
 		success: function (response) {
 			tree_cluster3 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
@@ -266,7 +266,7 @@
 	var tree_cluster4
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_clusters4.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters4.geojson",
 		dataType: 'json',
 		success: function (response) {
 			tree_cluster4 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
@@ -278,7 +278,7 @@
 	var tree_cluster5
 	
 	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_clusters5.geojson",
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters5.geojson",
 		dataType: 'json',
 		success: function (response) {
 			tree_cluster5 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
