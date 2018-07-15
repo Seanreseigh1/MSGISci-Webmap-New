@@ -254,11 +254,29 @@
 		zoom: 15,
 	});
 	
-	map.on('zoomend', function () {
-		if (map.getZoom() > 15 && map.hasLayer(propboundary)) {
-			map.removeLayer(propboundary);
-		}
-	});
+	map.on('zoomend', function() {
+    		if (map.getZoom() >15){
+        		if (map.hasLayer(propboundary)) {
+            			map.removeLayer(propboundary);
+       			 } else {
+            			console.log("no boundary layer active");
+        		}
+    		}
+    		if (map.getZoom() <= 15){
+       	 		if (map.hasLayer(propboundary)){
+            			console.log("layer already added");
+       			} else {
+            			map.addLayer(propboundary);
+        		}
+    		}
+	}
+
+	
+// 	map.on('zoomend', function () {
+// 		if (map.getZoom() > 15 && map.hasLayer(propboundary)) {
+// 			map.removeLayer(propboundary);
+// 		}
+// 	});
 	
 // 	map.on('zoomend', function () {
 // 		if (map.getZoom() < 15 && map.hasLayer(propboundary)) {
