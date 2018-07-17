@@ -549,7 +549,6 @@
 	
 	var tree_popups = L.layerGroup([tree21, tree22, tree23, tree24, tree25, tree26, tree27, tree28, tree29, tree30, tree38, tree39, treeunk]);
 
-	var random = {"Yolo"};
 	
 	var basemaps = {
 		"Black and White" : Black_and_white,
@@ -559,7 +558,7 @@
 	};
 
 
-	var layercontrol = L.control.layers(basemaps, random)
+	var layercontrol = L.control.layers(basemaps)
 	layercontrol.addTo(map);
 	
 
