@@ -110,7 +110,43 @@
 	
 	
 	
-
+	var rivers_and_creeks;
+	
+	
+	function highlightFeature3(e) {
+		var layer = e.target;
+		
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+	}
+	
+	function resetHighlight3(e) {
+		Tule_river.resetStyle(e.target);
+	}
+    
+	function highlight3(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature3,
+			mouseout: resetHighlight3
+		});
+	}
+    
+    	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Rivers_and_creeks.geojson",
+		dataType: 'json',
+		success: function (response) {
+			rivers_and_creeks = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup(function (layer){return '<a href="#">'+layer.feature.NAME.Comment+'</a>';});
+			//pastures.addTo(map);
+			layercontrol.addOverlay(rivers_and_creeks, 'Rivers and Creeks')
+		}
+	});
+    
+	
+	
 	var pastures;
 	
 	
@@ -186,39 +222,39 @@
 	
 	
 	
-	var Tule_river;
+// 	var Tule_river;
 	
-	function highlightFeature3(e) {
-		var layer = e.target;
+// 	function highlightFeature3(e) {
+// 		var layer = e.target;
 		
-		layer.setStyle({
-			weight: 5,
-			color: '#666',
-			dashArray: '',
-			fillOpacity: 0.7
-		});
-	}
+// 		layer.setStyle({
+// 			weight: 5,
+// 			color: '#666',
+// 			dashArray: '',
+// 			fillOpacity: 0.7
+// 		});
+// 	}
 	
-	function resetHighlight3(e) {
-		Tule_river.resetStyle(e.target);
-	}
+// 	function resetHighlight3(e) {
+// 		Tule_river.resetStyle(e.target);
+// 	}
     
-	function highlight3(feature, layer) {
-		layer.on({
-			mouseover: highlightFeature3,
-			mouseout: resetHighlight3
-		});
-	}
+// 	function highlight3(feature, layer) {
+// 		layer.on({
+// 			mouseover: highlightFeature3,
+// 			mouseout: resetHighlight3
+// 		});
+// 	}
 	
-	$.ajax({
-		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tule_river.geojson",
-		dataType: 'json',
-		success: function (response) {
-			Tule_river = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is the Tule River");
-			//Tule_river.addTo(map);
-			layercontrol.addOverlay(Tule_river, "Tule River")
-		}
-	});
+// 	$.ajax({
+// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tule_river.geojson",
+// 		dataType: 'json',
+// 		success: function (response) {
+// 			Tule_river = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is the Tule River");
+// 			//Tule_river.addTo(map);
+// 			layercontrol.addOverlay(Tule_river, "Tule River")
+// 		}
+// 	});
 	
 	
 	// var trees ;
