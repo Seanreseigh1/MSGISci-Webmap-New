@@ -94,6 +94,17 @@
 		}
 	};
 	
+	
+	function clusterStyle(feature){
+		return{
+            "fillColor": "#f2e39f",
+            "color": "#f24b4b",
+            "weight": 4,
+            "opacity": 1,
+            "fillOpacity": 0.50
+		}
+	};
+	
     
     var LeafIcon = L.Icon.extend({
         options: {
@@ -106,7 +117,9 @@
     })
     
     
-	//ADD GEOJSONS
+	
+    
+    //ADD GEOJSONS
 	
 	
 	
@@ -222,54 +235,6 @@
 	
 	
 	
-// 	var Tule_river;
-	
-// 	function highlightFeature3(e) {
-// 		var layer = e.target;
-		
-// 		layer.setStyle({
-// 			weight: 5,
-// 			color: '#666',
-// 			dashArray: '',
-// 			fillOpacity: 0.7
-// 		});
-// 	}
-	
-// 	function resetHighlight3(e) {
-// 		Tule_river.resetStyle(e.target);
-// 	}
-    
-// 	function highlight3(feature, layer) {
-// 		layer.on({
-// 			mouseover: highlightFeature3,
-// 			mouseout: resetHighlight3
-// 		});
-// 	}
-	
-// 	$.ajax({
-// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tule_river.geojson",
-// 		dataType: 'json',
-// 		success: function (response) {
-// 			Tule_river = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is the Tule River");
-// 			//Tule_river.addTo(map);
-// 			layercontrol.addOverlay(Tule_river, "Tule River")
-// 		}
-// 	});
-	
-	
-	// var trees ;
-	
-	
-	// $.ajax({
-		// url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Tree_points.geojson",
-		// dataType: 'json',
-		// success: function(response) {
-			// trees = L.geoJson(response, {style: treeStyle})
-			//Tule_river.addTo(map);
-			// layercontrol.addOverlay(trees, "Study Trees")
-		// }
-	// });
-	
 	
 
 	
@@ -279,7 +244,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters1.geojson",
 		dataType: 'json',
 		success: function (response) {
-			tree_cluster1 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
+			tree_cluster1 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight1}).bindPopup("This is a tree cluster");
 			//tree_cluster1.addTo(map);
 			layercontrol.addOverlay(tree_cluster1, "Tree Cluster 1")
 		}
@@ -291,7 +256,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters2.geojson",
 		dataType: 'json',
 		success: function (response) {
-			tree_cluster2 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
+			tree_cluster2 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight1}).bindPopup("This is a tree cluster");
 			//tree_cluster2.addTo(map);
 			layercontrol.addOverlay(tree_cluster2, "Tree Cluster 2")
 		}
@@ -303,7 +268,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters3.geojson",
 		dataType: 'json',
 		success: function (response) {
-			tree_cluster3 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
+			tree_cluster3 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight1}).bindPopup("This is a tree cluster");
 			//tree_cluster3.addTo(map);
 			layercontrol.addOverlay(tree_cluster3, "Tree Cluster 3")
 		}
@@ -315,7 +280,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters4.geojson",
 		dataType: 'json',
 		success: function (response) {
-			tree_cluster4 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
+			tree_cluster4 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight1}).bindPopup("This is a tree cluster");
 			//tree_cluster4.addTo(map);
 			layercontrol.addOverlay(tree_cluster4, "Tree Cluster 4")
 		}
@@ -327,7 +292,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters5.geojson",
 		dataType: 'json',
 		success: function (response) {
-			tree_cluster5 = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup("This is a tree cluster");
+			tree_cluster5 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight1}).bindPopup("This is a tree cluster");
 			//tree_cluster5.addTo(map);
 			layercontrol.addOverlay(tree_cluster5, "Tree Cluster 5")
 		}
