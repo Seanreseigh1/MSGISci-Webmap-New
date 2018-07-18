@@ -264,7 +264,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters1.geojson",
 		dataType: 'json',
 		success: function (response) {
-			tree_cluster1 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup("This is a tree cluster");
+			tree_cluster1 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '1' + '<br>' + 'Number of trees:' + ' ' + '2');
 			//tree_cluster1.addTo(map);
 			layercontrol.addOverlay(tree_cluster1, "Tree Cluster 1")
 		}
