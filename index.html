@@ -139,7 +139,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Rivers_and_creeks.geojson",
 		dataType: 'json',
 		success: function (response) {
-			rivers_and_creeks = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup(function (layer){return '<a href="#">'+layer.feature.NAME.Comment+'</a>';});
+			rivers_and_creeks = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup(function (layer){return '<a href="#">'+layer.feature.name.Comment+'</a>';});
 			//pastures.addTo(map);
 			layercontrol.addOverlay(rivers_and_creeks, 'Rivers and Creeks')
 		}
