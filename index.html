@@ -94,8 +94,16 @@
 		}
 	};
 	
-	
+    
+    var LeafIcon = L.Icon.extend({
+        options: {
+           iconSize:     [30, 30]
+        }
+    });	
 
+    var tree_icon = new LeafIcon({
+        iconUrl: 'https://png.icons8.com/color/50/000000/deciduous-tree.png',
+    })
     
     
 	//ADD GEOJSONS
@@ -387,52 +395,52 @@
 	var site = L.marker([36.162660, -118.799860]).addTo(map).bindPopup('<a href="http://www.river-ridge.net/">Visit the River Ridge Ranch Site</a>'),
 		
 		//api-frame_2
-		tree21 = L.marker([36.161798, -118.799725]).bindPopup('<b>Tree21</b>\n<iframe src="https://sketchfab.com/models/ce30db8ae46b4e4d8c20aff9c29a6f16/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_2" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/zD3Umf9.jpg" height="300px" width="300px"/></b>',
+		tree21 = L.marker([36.161798, -118.799725], {icon: tree_icon}).bindPopup('<b>Tree21</b>\n<iframe src="https://sketchfab.com/models/ce30db8ae46b4e4d8c20aff9c29a6f16/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_2" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/zD3Umf9.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 		
-		tree22 = L.marker([36.161712, -118.799755]).bindPopup('<b>Tree22</b>\n<iframe src="https://sketchfab.com/models/ce30db8ae46b4e4d8c20aff9c29a6f16/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_2" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/GcrYbu5.jpg" height="300px" width="300px"/></b>',
+		tree22 = L.marker([36.161712, -118.799755], {icon: tree_icon}).bindPopup('<b>Tree22</b>\n<iframe src="https://sketchfab.com/models/ce30db8ae46b4e4d8c20aff9c29a6f16/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_2" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/GcrYbu5.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 		
-		tree23 = L.marker([36.161742, -118.799823]).bindPopup('<b>Tree23</b>\n<iframe src="https://sketchfab.com/models/ce30db8ae46b4e4d8c20aff9c29a6f16/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_2 allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/tAE9aCA.jpg" height="300px" width="300px"/></b>',
+		tree23 = L.marker([36.161742, -118.799823], {icon: tree_icon}).bindPopup('<b>Tree23</b>\n<iframe src="https://sketchfab.com/models/ce30db8ae46b4e4d8c20aff9c29a6f16/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_2 allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/tAE9aCA.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 		
 		
 		
 		//api-frame_1
-		tree24 = L.marker([36.161871, -118.799975]).bindPopup('<b>Tree24</b>\n<iframe src="https://sketchfab.com/models/b07e0b8a601d4863a776f3f6db50a80b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_1" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/ClxS7PG.jpg" height="300px" width="300px"/></b>',
+		tree24 = L.marker([36.161871, -118.799975], {icon: tree_icon}).bindPopup('<b>Tree24</b>\n<iframe src="https://sketchfab.com/models/b07e0b8a601d4863a776f3f6db50a80b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_1" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/ClxS7PG.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 			
 		//api-frame_3
-		tree25 = L.marker([36.161713, -118.79999]).bindPopup('<b>Tree25</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/y6XOkgM.jpg" height="300px" width="300px"/></b>',
+		tree25 = L.marker([36.161713, -118.79999], {icon: tree_icon}).bindPopup('<b>Tree25</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/y6XOkgM.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 		
-		tree26 = L.marker([36.161738, -118.800096]).bindPopup('<b>Tree26</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/AfvsnMI.jpg" height="300px" width="300px"/></b>',
+		tree26 = L.marker([36.161738, -118.800096], {icon: tree_icon}).bindPopup('<b>Tree26</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/AfvsnMI.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 		
-		tree27 = L.marker([36.161734, -118.800066]).bindPopup('<b>Tree27</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/Mx5t8cG.jpg" height="300px" width="300px"/></b>',
+		tree27 = L.marker([36.161734, -118.800066], {icon: tree_icon}).bindPopup('<b>Tree27</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/Mx5t8cG.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 		
-		tree28 = L.marker([36.161736, -118.800115]).bindPopup('<b>Tree28</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/HyEOTo2.jpg" height="300px" width="300px"/></b>',
+		tree28 = L.marker([36.161736, -118.800115], {icon: tree_icon}).bindPopup('<b>Tree28</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/HyEOTo2.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 		
-		tree29 = L.marker([36.161736, -118.800143]).bindPopup('<b>Tree29</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/icMjgz1.jpg" height="300px" width="300px"/></b>',
+		tree29 = L.marker([36.161736, -118.800143], {icon: tree_icon}).bindPopup('<b>Tree29</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/icMjgz1.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 		
-		tree30 = L.marker([36.161673, -118.800104]).bindPopup('<b>Tree30</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/gdMo5e7.jpg" height="300px" width="300px"/></b>',
+		tree30 = L.marker([36.161673, -118.800104], {icon: tree_icon}).bindPopup('<b>Tree30</b>\n<iframe src="https://sketchfab.com/models/0aea5ebf76524282852ae14b8a1e794b/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_3" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/gdMo5e7.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 		
 		
 		
 		//api-frame_4
-		tree38 = L.marker([36.161622, -118.800307]).bindPopup('<b>Tree38</b>\n<iframe src="https://sketchfab.com/models/8fba9e40b6e943c8827ace97ba409903/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_4" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/Wbxp8vl.jpg" height="300px" width="300px"/></b>',
+		tree38 = L.marker([36.161622, -118.800307], {icon: tree_icon}).bindPopup('<b>Tree38</b>\n<iframe src="https://sketchfab.com/models/8fba9e40b6e943c8827ace97ba409903/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_4" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/Wbxp8vl.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 		
-		tree39 = L.marker([36.161532, -118.800391]).bindPopup('<b>Tree39</b>\n<iframe src="https://sketchfab.com/models/8fba9e40b6e943c8827ace97ba409903/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_4" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/Wbxp8vl.jpg" height="300px" width="300px"/></b>',
+		tree39 = L.marker([36.161532, -118.800391], {icon: tree_icon}).bindPopup('<b>Tree39</b>\n<iframe src="https://sketchfab.com/models/8fba9e40b6e943c8827ace97ba409903/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_4" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/Wbxp8vl.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"}),
 		
 		
 		//api-frame_5
-		treeunk = L.marker([36.161821, -118.800197]).bindPopup('<b>Tree unk</b>\n<iframe src="https://sketchfab.com/models/4873f7dd8e9847859bc3792faaccbfb3/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_5" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/Wbxp8vl.jpg" height="300px" width="300px"/></b>',
+		treeunk = L.marker([36.161821, -118.800197], {icon: tree_icon}).bindPopup('<b>Tree unk</b>\n<iframe src="https://sketchfab.com/models/4873f7dd8e9847859bc3792faaccbfb3/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_5" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/Wbxp8vl.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"});
         
 		
@@ -556,6 +564,8 @@
 		"Watercolor" : Thunder,
 		"Mapbox": Mapbox,
 	};
+    
+    
 
 
 	var layercontrol = L.control.layers(basemaps)
