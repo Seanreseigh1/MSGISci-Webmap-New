@@ -140,7 +140,7 @@
 		dataType: 'json',
 		success: function (response) {
 			rivers_and_creeks = L.geoJson(response, {style: riverStyle, onEachFeature: highlight3}).bindPopup(function (layer){return '<a href="#">'+layer.feature.properties.NAME+'</a>';});
-			//pastures.addTo(map);
+			rivers_and_creeks.addTo(map);
 			layercontrol.addOverlay(rivers_and_creeks, 'Rivers and Creeks')
 		}
 	});
