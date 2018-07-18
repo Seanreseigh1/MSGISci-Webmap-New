@@ -228,7 +228,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/RR_boundary.geojson",
 		dataType: 'json',
 		success: function (response) {
-			propboundary = L.geoJson(response, {style: boundaryStyle, onEachFeature: highlight2}).bindPopup('River Ridge Property Boundary' + '<br>' + '<a This is River  href="http://www.river-ridge.net/">Visit the River Ridge Ranch Site</a>');
+			propboundary = L.geoJson(response, {style: boundaryStyle, onEachFeature: highlight2}).bindPopup('River Ridge Property Boundary' + '<br>' + 'Acres:' + ' ' + '722' + '<br>' + '<br>' '<a This is River  href="http://www.river-ridge.net/">Visit the River Ridge Ranch Site</a>');
 			propboundary.addTo(map);
 			layercontrol.addOverlay(propboundary, 'River Ridge Ranch Boundary')
 		}
