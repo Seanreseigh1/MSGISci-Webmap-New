@@ -226,7 +226,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/RR_boundary.geojson",
 		dataType: 'json',
 		success: function (response) {
-			propboundary = L.geoJson(response, {style: boundaryStyle, onEachFeature: highlight2}).bindPopup("Property Boundary");
+			propboundary = L.geoJson(response, {style: boundaryStyle, onEachFeature: highlight2}).bindPopup('<a href="http://www.river-ridge.net/">Visit the River Ridge Ranch Site</a>');
 			propboundary.addTo(map);
 			layercontrol.addOverlay(propboundary, 'River Ridge Ranch Boundary')
 		}
@@ -413,7 +413,6 @@
 	
 	
 	
-	var site = L.marker([36.162660, -118.799860]).addTo(map).bindPopup('<a href="http://www.river-ridge.net/">Visit the River Ridge Ranch Site</a>'),
 		
 		//api-frame_2
 		tree21 = L.marker([36.161798, -118.799725], {icon: tree_icon}).bindPopup('<b>Tree21</b>\n<iframe src="https://sketchfab.com/models/ce30db8ae46b4e4d8c20aff9c29a6f16/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_2" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="400px" height="200px"></iframe><b><div><img src="https://i.imgur.com/zD3Umf9.jpg" height="300px" width="300px"/></b>',
