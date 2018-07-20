@@ -72,7 +72,7 @@
     
     function boundaryStyle(feature){
         return{
-            "fillColor": "#edc050",
+            "fillColor": "#ffffff",
             "color": "#42f445",
             "weight": 6,
             "opacity": 1,
@@ -106,21 +106,53 @@
             "fillOpacity": 0.50
 		}
 	};
-	
+
     
-    var LeafIcon = L.Icon.extend({
+    
+    
+    //TREE ICON
+
+    var LeafIcon1 = L.Icon.extend({
         options: {
            iconSize:     [30, 30]
         }
     });	
 
-    var tree_icon = new LeafIcon({
+    var tree_icon = new LeafIcon1({
         iconUrl: 'https://png.icons8.com/color/50/000000/deciduous-tree.png',
+    });
+    
+    
+    
+    
+    //RED PIN ICON
+    
+	var LeafIcon2 = L.Icon.extend({
+        options: {
+           iconSize:     [40, 40]
+        }
+    });	
+
+    var context_tree = new LeafIcon2({
+        iconUrl: 'https://png.icons8.com/ultraviolet/40/000000/sort-up.png',
     })
     
     
-	
+    //ZOOM ICON
     
+    
+    var LeafIcon3 = L.Icon.extend({
+        options: {
+           iconSize:     [70, 70]
+        }
+    });	
+
+    var zoom = new LeafIcon3({
+        iconUrl: 'https://png.icons8.com/color/40/000000/search.png',
+    })
+    
+    
+
     //ADD GEOJSONS
 	
 	
@@ -133,7 +165,7 @@
 		
 		layer.setStyle({
 			weight: 5,
-			color: '#666',
+			color: '#f2e609',
 			dashArray: '',
 			fillOpacity: 0.7
 		});
@@ -170,7 +202,7 @@
 		
 		layer.setStyle({
 			weight: 5,
-			color: '#666',
+			color: '#f2e609',
 			dashArray: '',
 			fillOpacity: 0.7
 		});
@@ -207,7 +239,7 @@
 		
 		layer.setStyle({
 			weight: 5,
-			color: '#666',
+			color: '#f2e609',
 			dashArray: '',
 			fillOpacity: 0.7
 		});
@@ -241,7 +273,7 @@
 		
 		layer.setStyle({
 			weight: 5,
-			color: '#666',
+			color: '#f2e609',
 			dashArray: '',
 			fillOpacity: 0.7
 		});
@@ -387,7 +419,17 @@
 				} else {
 					map.removeLayer(tree_popups);
 				}
-			
+            if (map.getZoom() >16){
+                    map.addLayer(context_trees);
+                } else {
+                    map.removeLayer(context_trees);
+                }
+            
+			if (map.getZoom() >16){
+                    map.removeLayer(zoomicon);
+                } else {
+                    map.addLayer(zoomicon);
+                }
 	});
 	
 
@@ -464,9 +506,24 @@
 		//api-frame_5
 		treeunk = L.marker([36.161821, -118.800197], {icon: tree_icon}).bindPopup('<b>Tree Species: Blue Oak</b>\n<iframe src="https://sketchfab.com/models/4873f7dd8e9847859bc3792faaccbfb3/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_5" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="300px" height="300px"></iframe><b><div><img src="https://i.imgur.com/TPPmuEG.jpg" height="300px" width="300px"/></b>',
 		{maxWidth : "auto"});
-        
+    
+    
+        //Individual Trees Rendered with Context Capture
+        contextcap1 = L.marker([36.161850, -118.800177], {icon: context_tree}).bindPopup('<b>Tree Species: Blue Oak</b>\n<iframe src="https://sketchfab.com/models/4873f7dd8e9847859bc3792faaccbfb3/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_5" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="300px" height="300px"></iframe><b><div><img src="https://i.imgur.com/TPPmuEG.jpg" height="300px" width="300px"/></b>',
+		{maxWidth : "auto"});
+    
+    
+        contextcap2 = L.marker([36.161899, -118.800035], {icon: context_tree}).bindPopup('<b>Tree Species: Blue Oak</b>\n<iframe src="https://sketchfab.com/models/4873f7dd8e9847859bc3792faaccbfb3/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_5" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="300px" height="300px"></iframe><b><div><img src="https://i.imgur.com/TPPmuEG.jpg" height="300px" width="300px"/></b>',
+		{maxWidth : "auto"});
+    
+    
+        //ZOOM HERE
+    
+        zoomicon = L.marker([36.161669, -118.800146], {icon: zoom}).bindPopup('Zoom to this location for more!')
 		
 
+    
+        
 		//Trees: 24 
 		// tree24.on('click', function() {
 		// 		var iframe = document.getElementById( 'api-frame_1' );
@@ -577,7 +634,9 @@
 
 	
 	var tree_popups = L.layerGroup([tree21, tree22, tree23, tree24, tree25, tree26, tree27, tree28, tree29, tree30, tree38, tree39, treeunk]);
-
+    var context_trees = L.layerGroup([contextcap1, contextcap2]);
+    
+    
 	
 	var basemaps = {
 		"Black and White" : Black_and_white,
@@ -594,7 +653,8 @@
 	
 
 	layercontrol.addOverlay(tree_popups, 'Study Trees')
-	
+    layercontrol.addOverlay(context_trees, "Context Capture Renderings")
+    layercontrol.addOverlay(zoomicon, "Location of Interest")
 
 	
 	//LEGEND
