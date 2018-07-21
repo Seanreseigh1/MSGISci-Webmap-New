@@ -317,7 +317,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters1.geojson",
 		dataType: 'json',
 		success: function (response) {
-			tree_cluster1 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '1' + '<br>' + 'Number of trees:' + ' ' + '2' + '<br>' + 'Tree Species:' + ' ')
+			tree_cluster1 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '1' + '<br>' + 'Number of trees:' + ' ' + '2' + '<br>' + 'Tree Species:' + ' Interior Live Oak and Blue Oak')
 			tree_clusters.addLayer(tree_cluster1);
 			//tree_cluster1.addTo(map);
 			// layercontrol.addOverlay(tree_cluster1, "Tree Cluster 1")
@@ -327,7 +327,7 @@
 				url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters2.geojson",
 				dataType: 'json',
 				success: function (response) {
-					tree_cluster2 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '2' + '<br>' + 'Number of trees:' + ' ' + '6' + '<br>' + 'Tree Species:' + ' ');
+					tree_cluster2 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '2' + '<br>' + 'Number of trees:' + ' ' + '6' + '<br>' + 'Tree Species:' + ' Blue Oak');
 					tree_clusters.addLayer(tree_cluster2);
 					//tree_cluster2.addTo(map);
 					// layercontrol.addOverlay(tree_cluster2, "Tree Cluster 2")
@@ -338,7 +338,7 @@
 						url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters3.geojson",
 						dataType: 'json',
 						success: function (response) {
-							tree_cluster3 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '3' + '<br>' + 'Number of trees:' + ' ' + '3' + '<br>' + 'Tree Species:' + ' ');
+							tree_cluster3 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '3' + '<br>' + 'Number of trees:' + ' ' + '3' + '<br>' + 'Tree Species:' + ' Valley Oak');
 							//tree_cluster3.addTo(map);
 							// layercontrol.addOverlay(tree_cluster3, "Tree Cluster 3")
 							tree_clusters.addLayer(tree_cluster3);
@@ -349,7 +349,7 @@
 								url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters4.geojson",
 								dataType: 'json',
 								success: function (response) {
-									tree_cluster4 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '4' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' ');
+									tree_cluster4 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '4' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' Blue Oak');
 									//tree_cluster4.addTo(map);
 									// layercontrol.addOverlay(tree_cluster4, "Tree Cluster 4")
 									tree_clusters.addLayer(tree_cluster4);
@@ -360,7 +360,7 @@
 										url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters5.geojson",
 										dataType: 'json',
 										success: function (response) {
-											tree_cluster5 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '5' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' ');
+											tree_cluster5 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '5' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' Blue Oak');
 											//tree_cluster5.addTo(map);
 											// layercontrol.addOverlay(tree_cluster5, "Tree Cluster 5")
 											tree_clusters.addLayer(tree_cluster5);
@@ -373,65 +373,7 @@
 	
 
 	
-// 	var tree_cluster1
-	
-// 	$.ajax({
-// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters1.geojson",
-// 		dataType: 'json',
-// 		success: function (response) {
-// 			tree_cluster1 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '1' + '<br>' + 'Number of trees:' + ' ' + '2' + '<br>' + 'Tree Species:' + ' ');
-// 			//tree_cluster1.addTo(map);
-// 			layercontrol.addOverlay(tree_cluster1, "Tree Cluster 1")
-// 		}
-// 	});
-	
-// 	var tree_cluster2
-	
-// 	$.ajax({
-// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters2.geojson",
-// 		dataType: 'json',
-// 		success: function (response) {
-// 			tree_cluster2 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '2' + '<br>' + 'Number of trees:' + ' ' + '6' + '<br>' + 'Tree Species:' + ' ');
-// 			//tree_cluster2.addTo(map);
-// 			layercontrol.addOverlay(tree_cluster2, "Tree Cluster 2")
-// 		}
-// 	});
-	
-// 	var tree_cluster3
-	
-// 	$.ajax({
-// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters3.geojson",
-// 		dataType: 'json',
-// 		success: function (response) {
-// 			tree_cluster3 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '3' + '<br>' + 'Number of trees:' + ' ' + '3' + '<br>' + 'Tree Species:' + ' ');
-// 			//tree_cluster3.addTo(map);
-// 			layercontrol.addOverlay(tree_cluster3, "Tree Cluster 3")
-// 		}
-// 	});
-	
-// 	var tree_cluster4
-	
-// 	$.ajax({
-// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters4.geojson",
-// 		dataType: 'json',
-// 		success: function (response) {
-// 			tree_cluster4 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '4' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' ');
-// 			//tree_cluster4.addTo(map);
-// 			layercontrol.addOverlay(tree_cluster4, "Tree Cluster 4")
-// 		}
-// 	});
-	
-// 	var tree_cluster5
-	
-// 	$.ajax({
-// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters5.geojson",
-// 		dataType: 'json',
-// 		success: function (response) {
-// 			tree_cluster5 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '5' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' ');
-// 			//tree_cluster5.addTo(map);
-// 			layercontrol.addOverlay(tree_cluster5, "Tree Cluster 5")
-// 		}
-// 	});
+
 	
 	
 
@@ -531,6 +473,12 @@
 	
 	
 
+	var ndviURL = "https://i.imgur.com/EcHRymr.png"
+	var topleft = [36.1671, -118.8044];
+	var bottomright = [36.1393, -118.7802];
+	var imageBounds = [topleft, bottomright];
+	
+	var NDVI = L.imageOverlay(ndviURL, imageBounds)
 	
 	
 	
@@ -736,6 +684,7 @@
 	layercontrol.addOverlay(tree_popups, 'Study Trees')
     layercontrol.addOverlay(context_trees, "Context Capture Renderings")
     layercontrol.addOverlay(zoomicon, "Location of Interest")
+	layercontrol.addOverlay(NDVI, "NDVI Raster")
 
 	
 	
