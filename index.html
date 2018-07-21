@@ -19,7 +19,19 @@
 	left:0;
 }
             
-    
+ 
+.title {
+		padding: 6px 20px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background: white;
+        background: rgba(255,255,255,0.8);
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        border-radius: 5px;
+		width: 570px;
+		margin: 0 auto;
+      }
+
+ 
 .info {
 		padding: 6px 8px;
         font: 14px/16px Arial, Helvetica, sans-serif;
@@ -726,6 +738,10 @@
     layercontrol.addOverlay(zoomicon, "Location of Interest")
 
 	
+	
+	
+	
+	
 	//LEGEND
 	
 	var legend = L.control({position: 'bottomright'});
@@ -748,6 +764,22 @@
 	//SCALE BAR AND NORTH ARROW
     
     L.control.scale(position= 'bottomleft', maxWidth= 100, imperial= true).addTo(map);
+	
+	
+	//ADD TITLE
+	
+	var info = L.control();
+	info.onAdd = function(map){
+		this._div = L.DomUtil.create("div", "title");
+		this.update();
+		return this._div;
+	};
+	
+	info.update = function() {
+		this._div.innerHTML = "<h3>River Ridge Ranch</h3>";;
+	};
+	
+	info.addTo(map);
 	
 
 
