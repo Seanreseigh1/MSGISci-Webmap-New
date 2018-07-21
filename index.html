@@ -118,6 +118,16 @@
             "fillOpacity": 0.50
 		}
 	};
+	
+	
+	 function streetStyle(feature){
+        return{
+            "color": "#fffefc",
+            "weight": 3,
+            "opacity": 1,
+			"dashArray": '20,15'
+        }
+    };
 
     
     
@@ -244,6 +254,11 @@
 	
 	
 	
+	
+	
+	
+	
+	
 	var propboundary;
 	
 	function highlightFeature2(e) {
@@ -277,6 +292,68 @@
 			layercontrol.addOverlay(propboundary, 'River Ridge Ranch Boundary')
 		}
 	});
+	
+	
+	
+	
+	
+	
+	var streets;
+
+	
+	function highlightFeature5(e) {
+		var layer = e.target;
+		
+		layer.setStyle({
+			weight: 5,
+			color: '#f2e609',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+	}
+	
+	function resetHighlight5(e) {
+		streets.resetStyle(e.target);
+	}
+    
+	function highlight5(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature5,
+			mouseout: resetHighlight5
+		});
+	}
+	
+	
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/County_streets.geojson",
+		dataType: 'json',
+		success: function (response) {
+			streets = L.geoJson(response, {style: streetStyle, onEachFeature: highlight5}).bindPopup(function (layer){return 'Street Name:' + ' ' + '<a href="#">'+layer.feature.properties.ST_NAME+'</a>';});
+			streets.addTo(map);
+			layercontrol.addOverlay(streets, 'County Streets')
+		}
+	});
+	
+	
+	
+	var geographic_POI;
+	
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/geographic_poi.geojson",
+		dataType: 'json',
+		success: function (response) {
+			geographic_POI = L.geoJson(response, {style: tree_icon}).bindPopup(function (layer){return 'Point of Interest:' + ' ' + '<a href="#">'+layer.feature.properties.NAME+'</a>';});
+			geographic_POI.addTo(map);
+			layercontrol.addOverlay(geographic_POI, 'Geographic Points of Interest')
+		}
+	});
+	
+	
+	
+	
+	
 	
 	
 	
@@ -393,16 +470,16 @@
     map.on('zoomend', function() {
     		if (map.getZoom() >15){
             		map.removeLayer(propboundary);
-       			 } else {
-            			map.addLayer(propboundary)
+       			 // } else {
+            			// map.addLayer(propboundary)
         		}
     		
 
-            if (map.getZoom() ==16){
-				        map.addLayer(pastures);
-                } else {
-				        map.removeLayer(pastures);
-                }
+            // if (map.getZoom() ==16){
+				        // map.addLayer(pastures);
+                // } else {
+				        // map.removeLayer(pastures);
+                // }
 				
 			if (map.getZoom() >16){
 					map.addLayer(tree_cluster1);
@@ -473,7 +550,7 @@
 	
 	
 
-	var ndviURL = "https://i.imgur.com/EcHRymr.png"
+	var ndviURL = "https://i.imgur.com/JqESXzh.png"
 	var topleft = [36.1671, -118.8044];
 	var bottomright = [36.1393, -118.7802];
 	var imageBounds = [topleft, bottomright];
