@@ -129,6 +129,15 @@
         }
     };
 
+	function siteStyle(feature){
+        return{
+            "fillColor": "#ffffff",
+            "color": "#42f445",
+            "weight": 6,
+            "opacity": 1,
+            "fillOpacity": 0.40
+        }
+    };
     
     
     
@@ -447,7 +456,25 @@
 										    
 											layercontrol.addOverlay(tree_clusters, "Tree Clusters")
 										});
+		
+		
 	
+	
+	
+	
+	var study_site;
+	
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Control_site.geojson",
+		dataType: 'json',
+		success: function (response) {
+			study_site = L.geoJson(response, {style: siteStyle}).bindPopup('Sketchfab Rendering' + '<br>' + '<br>' + '<iframe src="https://sketchfab.com/models/1956ecf965194b078f5033ffe546ff7f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_2" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="700px" height="700px"></iframe><b>',
+		{maxWidth : "auto"})
+			study_site.addTo(map);
+			layercontrol.addOverlay(study_site, 'Study Site')
+		}
+	});
 
 	
 
