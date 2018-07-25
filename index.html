@@ -20,28 +20,26 @@
 }
             
  
- 
-.info {
-		padding: 6px 8px;
+.title {
+		padding: 6px 20px;
         font: 14px/16px Arial, Helvetica, sans-serif;
         background: white;
         background: rgba(255,255,255,0.8);
         box-shadow: 0 0 15px rgba(0,0,0,0.2);
         border-radius: 5px;
+		width: 570px;
+		margin: 0 auto;
       }
+
+ 
+
+
 .legend {
-         text-align: left;
-         line-height: 25px;
-         color: #000;
+         width: 300 px;
+		 height: 300 px;
         }
 
-.legend i {
-           width: 22px;
-           height: 22px;
-           float: left;
-	       margin-right: 8px;
-           opacity: 0;
-          }
+
 
 .leaflet-popup-content img { margin: 0 auto; display:block; }
 		  
@@ -107,7 +105,26 @@
             "fillOpacity": 0.50
 		}
 	};
+	
+	
+	 function streetStyle(feature){
+        return{
+            "color": "#fffefc",
+            "weight": 3,
+            "opacity": 1,
+			"dashArray": '20,15'
+        }
+    };
 
+	function siteStyle(feature){
+        return{
+            "fillColor": "#ffffff",
+            "color": "#f4e842",
+            "weight": 6,
+            "opacity": 1,
+            "fillOpacity": 0.40
+        }
+    };
     
     
     
@@ -233,6 +250,11 @@
 	
 	
 	
+	
+	
+	
+	
+	
 	var propboundary;
 	
 	function highlightFeature2(e) {
@@ -266,6 +288,68 @@
 			layercontrol.addOverlay(propboundary, 'River Ridge Ranch Boundary')
 		}
 	});
+	
+	
+	
+	
+	
+	
+	var streets;
+
+	
+	function highlightFeature5(e) {
+		var layer = e.target;
+		
+		layer.setStyle({
+			weight: 5,
+			color: '#f2e609',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+	}
+	
+	function resetHighlight5(e) {
+		streets.resetStyle(e.target);
+	}
+    
+	function highlight5(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature5,
+			mouseout: resetHighlight5
+		});
+	}
+	
+	
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/County_streets.geojson",
+		dataType: 'json',
+		success: function (response) {
+			streets = L.geoJson(response, {style: streetStyle, onEachFeature: highlight5}).bindPopup(function (layer){return 'Street Name:' + ' ' + '<a href="#">'+layer.feature.properties.ST_NAME+'</a>';});
+			streets.addTo(map);
+			layercontrol.addOverlay(streets, 'County Streets')
+		}
+	});
+	
+	
+	
+	var geographic_POI;
+	
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/geographic_poi.geojson",
+		dataType: 'json',
+		success: function (response) {
+			geographic_POI = L.geoJson(response, {style: tree_icon}).bindPopup(function (layer){return 'Point of Interest:' + ' ' + '<a href="#">'+layer.feature.properties.NAME+'</a>';});
+			geographic_POI.addTo(map);
+			layercontrol.addOverlay(geographic_POI, 'Geographic Points of Interest')
+		}
+	});
+	
+	
+	
+	
+	
 	
 	
 	
@@ -306,7 +390,7 @@
 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters1.geojson",
 		dataType: 'json',
 		success: function (response) {
-			tree_cluster1 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '1' + '<br>' + 'Number of trees:' + ' ' + '2' + '<br>' + 'Tree Species:' + ' ')
+			tree_cluster1 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '1' + '<br>' + 'Number of trees:' + ' ' + '2' + '<br>' + 'Tree Species:' + ' Interior Live Oak and Blue Oak')
 			tree_clusters.addLayer(tree_cluster1);
 			//tree_cluster1.addTo(map);
 			// layercontrol.addOverlay(tree_cluster1, "Tree Cluster 1")
@@ -316,7 +400,7 @@
 				url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters2.geojson",
 				dataType: 'json',
 				success: function (response) {
-					tree_cluster2 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '2' + '<br>' + 'Number of trees:' + ' ' + '6' + '<br>' + 'Tree Species:' + ' ');
+					tree_cluster2 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '2' + '<br>' + 'Number of trees:' + ' ' + '6' + '<br>' + 'Tree Species:' + ' Blue Oak');
 					tree_clusters.addLayer(tree_cluster2);
 					//tree_cluster2.addTo(map);
 					// layercontrol.addOverlay(tree_cluster2, "Tree Cluster 2")
@@ -327,7 +411,7 @@
 						url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters3.geojson",
 						dataType: 'json',
 						success: function (response) {
-							tree_cluster3 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '3' + '<br>' + 'Number of trees:' + ' ' + '3' + '<br>' + 'Tree Species:' + ' ');
+							tree_cluster3 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '3' + '<br>' + 'Number of trees:' + ' ' + '3' + '<br>' + 'Tree Species:' + ' Valley Oak');
 							//tree_cluster3.addTo(map);
 							// layercontrol.addOverlay(tree_cluster3, "Tree Cluster 3")
 							tree_clusters.addLayer(tree_cluster3);
@@ -338,7 +422,7 @@
 								url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters4.geojson",
 								dataType: 'json',
 								success: function (response) {
-									tree_cluster4 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '4' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' ');
+									tree_cluster4 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '4' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' Blue Oak');
 									//tree_cluster4.addTo(map);
 									// layercontrol.addOverlay(tree_cluster4, "Tree Cluster 4")
 									tree_clusters.addLayer(tree_cluster4);
@@ -349,7 +433,7 @@
 										url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters5.geojson",
 										dataType: 'json',
 										success: function (response) {
-											tree_cluster5 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '5' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' ');
+											tree_cluster5 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '5' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' Blue Oak');
 											//tree_cluster5.addTo(map);
 											// layercontrol.addOverlay(tree_cluster5, "Tree Cluster 5")
 											tree_clusters.addLayer(tree_cluster5);
@@ -359,68 +443,28 @@
 										    
 											layercontrol.addOverlay(tree_clusters, "Tree Clusters")
 										});
+		
+		
 	
+	
+	
+	
+	var study_site;
+	
+	
+	$.ajax({
+		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Control_site.geojson",
+		dataType: 'json',
+		success: function (response) {
+			study_site = L.geoJson(response, {style: siteStyle}).bindPopup('Sketchfab Rendering' + '<br>' + '<br>' + '<iframe src="https://sketchfab.com/models/1956ecf965194b078f5033ffe546ff7f/embed?api_version=1.0.0&amp;api_id=653823281153884&amp;ui_infos=0&amp;ui_controls=0&amp;ui_stop=0" id="api-frame_2" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" width="700px" height="700px"></iframe><b>',
+		{maxWidth : "auto"})
+			study_site.addTo(map);
+			layercontrol.addOverlay(study_site, 'Study Site')
+		}
+	});
 
 	
-// 	var tree_cluster1
-	
-// 	$.ajax({
-// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters1.geojson",
-// 		dataType: 'json',
-// 		success: function (response) {
-// 			tree_cluster1 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '1' + '<br>' + 'Number of trees:' + ' ' + '2' + '<br>' + 'Tree Species:' + ' ');
-// 			//tree_cluster1.addTo(map);
-// 			layercontrol.addOverlay(tree_cluster1, "Tree Cluster 1")
-// 		}
-// 	});
-	
-// 	var tree_cluster2
-	
-// 	$.ajax({
-// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters2.geojson",
-// 		dataType: 'json',
-// 		success: function (response) {
-// 			tree_cluster2 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '2' + '<br>' + 'Number of trees:' + ' ' + '6' + '<br>' + 'Tree Species:' + ' ');
-// 			//tree_cluster2.addTo(map);
-// 			layercontrol.addOverlay(tree_cluster2, "Tree Cluster 2")
-// 		}
-// 	});
-	
-// 	var tree_cluster3
-	
-// 	$.ajax({
-// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters3.geojson",
-// 		dataType: 'json',
-// 		success: function (response) {
-// 			tree_cluster3 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '3' + '<br>' + 'Number of trees:' + ' ' + '3' + '<br>' + 'Tree Species:' + ' ');
-// 			//tree_cluster3.addTo(map);
-// 			layercontrol.addOverlay(tree_cluster3, "Tree Cluster 3")
-// 		}
-// 	});
-	
-// 	var tree_cluster4
-	
-// 	$.ajax({
-// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters4.geojson",
-// 		dataType: 'json',
-// 		success: function (response) {
-// 			tree_cluster4 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '4' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' ');
-// 			//tree_cluster4.addTo(map);
-// 			layercontrol.addOverlay(tree_cluster4, "Tree Cluster 4")
-// 		}
-// 	});
-	
-// 	var tree_cluster5
-	
-// 	$.ajax({
-// 		url: "https://raw.githubusercontent.com/Seanreseigh1/MSGISci-Webmap-New/master/Geojsons/Tree_clusters5.geojson",
-// 		dataType: 'json',
-// 		success: function (response) {
-// 			tree_cluster5 = L.geoJson(response, {style: clusterStyle, onEachFeature: highlight4}).bindPopup('Tree Cluster:' + ' ' + '5' + '<br>' + 'Number of trees:' + ' ' + '1' + '<br>' + 'Tree Species:' + ' ');
-// 			//tree_cluster5.addTo(map);
-// 			layercontrol.addOverlay(tree_cluster5, "Tree Cluster 5")
-// 		}
-// 	});
+
 	
 	
 
@@ -440,16 +484,16 @@
     map.on('zoomend', function() {
     		if (map.getZoom() >15){
             		map.removeLayer(propboundary);
-       			 } else {
-            			map.addLayer(propboundary)
+       			 // } else {
+            			// map.addLayer(propboundary)
         		}
     		
 
-            if (map.getZoom() ==16){
-				        map.addLayer(pastures);
-                } else {
-				        map.removeLayer(pastures);
-                }
+            // if (map.getZoom() ==16){
+				        // map.addLayer(pastures);
+                // } else {
+				        // map.removeLayer(pastures);
+                // }
 				
 			if (map.getZoom() >16){
 					map.addLayer(tree_cluster1);
@@ -520,6 +564,12 @@
 	
 	
 
+	var ndviURL = "https://i.imgur.com/JqESXzh.png"
+	var topleft = [36.1671, -118.8044];
+	var bottomright = [36.1393, -118.7802];
+	var imageBounds = [topleft, bottomright];
+	
+	var NDVI = L.imageOverlay(ndviURL, imageBounds)
 	
 	
 	
@@ -717,6 +767,7 @@
     
     
 
+
 	var layercontrol = L.control.layers(basemaps)
 	layercontrol.addTo(map);
 	
@@ -724,26 +775,14 @@
 	layercontrol.addOverlay(tree_popups, 'Study Trees')
     layercontrol.addOverlay(context_trees, "Context Capture Renderings")
     layercontrol.addOverlay(zoomicon, "Location of Interest")
+	layercontrol.addOverlay(NDVI, "NDVI Raster")
 
 	
 	
 	
-
-	//LEGEND
 	
-	var legend = L.control({position: 'bottomright'});
-		legend.onAdd = function(map){
-		var div = L.DomUtil.create('div', 'info legend');
-		labels = [
-			" ",
-			" ",
-		];
-        
-		div.innerHTML = '<h3>River Ridge Ranch Web Map</h3>'+ labels.join('<img src="https://i.imgur.com/Nf3ZVS1.png">');
-		return div;
-		};
-	legend.addTo(map);
-    
+		
+
     
     
 	
@@ -752,6 +791,16 @@
     
     L.control.scale(position= 'bottomleft', maxWidth= 100, imperial= true).addTo(map);
 	
+	
+	//ADD TITLE
+	
+	var legend = L.control({position: 'bottomright'});
+	legend.onAdd = function (map) {
+		var div = L.DomUtil.create('div', 'legend');
+		div.innerHTML = '<img src="https://i.imgur.com/Nf3ZVS1.png">';
+		return div;
+	};
+	legend.addTo(map);
 	
 
 
